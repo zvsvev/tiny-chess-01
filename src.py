@@ -409,7 +409,7 @@ def search(d, a, B, ply):
         elif i == 0:
             v = -search(d - 1, -B, -a, ply + 1)
         else:
-            v = -search(d - 1, -B, -a - 1, ply + 1)
+            v = -search(d - 1, -a - 1, -a, ply + 1)
             if a < v < B:
                 v = -search(d - 1, -B, -a, ply + 1)
         unmake()
@@ -461,7 +461,7 @@ def root():
                 if i == 0:
                     v = -search(d - 1, -B, -a, 1)
                 else:
-                    v = -search(d - 1, -B, -a - 1, 1)
+                    v = -search(d - 1, -a - 1, -a, 1)
                     if a < v < B:
                         v = -search(d - 1, -B, -a, 1)
                 unmake()

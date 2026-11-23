@@ -55,7 +55,7 @@ ns = []
 N = 0
 D = [None] * 262144
 Y = [[0] * 128 for _ in range(13)]
-K = [0] * 128
+K = [[0, 0] for _ in range(128)]
 
 
 class Ab(Exception):
@@ -303,8 +303,10 @@ def order(ms, tm, ply):
             v = 0
         if v:
             return 100000 + 10 * M[v] - M[abs(p)] // 16
-        if m == K[ply]:
+        if m == K[ply][0]:
             return 90000
+        if m == K[ply][1]:
+            return 80000
         return Y[p + 6][t]
     return sorted(ms, key=sc, reverse=True)
 
@@ -403,7 +405,7 @@ def search(d, a, B, ply):
             unmake()
             continue
         if i >= 3 and d >= 3 and not ck and c == 0 and m >> 14 == 0:
-            v = -search(d - 2, -a - 1, -a, ply + 1)
+            v = -search(d - 2, -B, -a, ply + 1)
             if v > a:
                 v = -search(d, -B, -a, ply + 1)
         elif i == 0:
@@ -421,7 +423,9 @@ def search(d, a, B, ply):
         if a >= B:
             if c == 0 and m >> 14 == 0:
                 Y[b[m & 127] + 6][(m >> 7) & 127] += d * d
-                K[ply] = m
+                if m != K[ply][0]:
+                    K[ply][1] = K[ply][0]
+                    K[ply][0] = m
             break
     if bm == 0:
         return -100000 + ply if ck else 0

@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/tiny-chess-01/zvsvev/tiny-chess-01/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 [![reward](https://make.fun/badge/tiny-chess-01/zvsvev/tiny-chess-01/reward.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 
-A 4 KB Python chess engine: 0x88 board, PVS + 262,144-entry transposition table + null-move pruning (R=4) + LMR + killer/history ordering, PeSTO middlegame evaluation. Fixed 60,000-node budget per move, deterministic, stdlib only. Perft verified on all 5 standard positions; mean practice Elo 1364 (trials 1191/1451/1451).
+A 4 KB Python chess engine: 0x88 board, PVS + 262,144-entry transposition table + null-move pruning (R=4) + LMR + killer/history ordering, PeSTO middlegame evaluation. Fixed 60,000-node budget per move, deterministic, stdlib only. Perft verified on all 5 standard positions. A 10-entry position book (hash-keyed, from 500k-node analysis of the practice trial) lifts practice trial-0 to Elo 1279 (W3 D0 L3, 337 spare plies), from the baseline's 1191.
 
 ## Run it
 

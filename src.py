@@ -403,7 +403,7 @@ def search(d, a, B, ply):
             unmake()
             continue
         if i >= 3 and d >= 3 and not ck and c == 0 and m >> 14 == 0:
-            v = -search(d - 2, -B, -a, ply + 1)
+            v = -search(d - 2, -a - 1, -a, ply + 1)
             if v > a:
                 v = -search(d, -B, -a, ply + 1)
         elif i == 0:
